@@ -1,0 +1,41 @@
+Ciobanu Alin-Matei 325CB
+
+	Pentru rezolvarea temei am pornit de la scheletul de cod din laboratorul 10.
+	Astfel, arhiva contine :
+	- client.c: parsarea comenzilor citite de la tastatura, trimiterea lor catre
+	server si afisarea raspunsului.
+	- request.c: compunerea efectiva a mesajelor (GET, POST, DELETE) intocmai ca
+	in laboratorul 10.
+	- buffer.c helpers.c: aceleasi ca si in laboratorul 10, ofera functii de
+	conectare cu serverul, de trimitere/ primire mesaje.
+	- parson.c: functii pentru manipularea obiectelor de tip json.
+	- headere pentru cele prezentate mai sus: request.h, helpers.h, buffer.h
+	parson.h
+
+	client.c
+	- intr-un while(1) citesc comenzi de la tastatura
+	- daca comanda este exit inchid conexiunea si ies din program
+	- daca comanda este register: ofer prompt pt username si password; creez
+	obiectul json aferent datelor citite (username si pass), il memorez in data[0]
+	si creez mesajul pe care il trimit catre server; afisez raspunsul server-ului.
+	- daca comadna este login: ofer prompt pt username si password; creez obiectul
+	json, creez mesajul pe care il trimit catre server si afisez raspunsul; memorez
+	cookie-ul primit de la server in raspuns.
+	- daca comanda este enter_library: trimit get request-ul catre server,
+	afisez raspunsul si salvez token-ul de acces din raspuns.
+	- daca comanda este get_books: compun mesajul, il trimit catre server si
+	afisez raspunsul.
+	- daca comanda este get_book: ofer prompt pt id, compun mesajul, il trimit
+	catre server si afisez raspunsul.
+	- daca comanda este add_book: ofer prompt pt title, author, genre, publisher,
+	page_count; verific ca page_count sa fie nr intreg pozitiv; creez obiectul json
+	si trimit mesajul catre server; afisez raspunsul.
+	- daca comanda este delete_book: afisez prompt id, verific ca id-ul sa fie
+	numar intreg pozitiv.
+	- daca comanda este logout: trimit mesaj pt logout; afisez raspunsul
+	
+	Pentru erori am ales sa afisez tot raspunsul server-ului cu eroarea aferenta.
+	La functiile din request.c am adaugat un parametru in antetul lor si anume
+	char *token; setat pe NULL nu face nimic; il folosesc pentru verificarea
+	accesului la biblioteca.
+
